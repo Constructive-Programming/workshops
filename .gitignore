@@ -1,2 +1,7 @@
+.#*
+*.pdf
 *.class
 *.log
+/.metals/
+/.bsp/
+/dist/
