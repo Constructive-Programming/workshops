@@ -1,0 +1,51 @@
+#+TITLE: Constructive Programming - One - Total Functions
+#+AUTHOR: Rodolfo Hansen
+#+INCLUDE: "../common.org"
+#+EXPORT_FILE_NAME: ../dist/total
+
+
+* Make functions Total
+
+Constructive Programming requires the functions you write to be total. 
+
+** Fix the following functions:
+
+#+BEGIN_SRC amm
+def parseInt(number: String): Int = number.toInt
+// -- sanity check
+parseInt("oops")
+
+#+END_SRC
+#+REVEAL: split
+#+BEGIN_SRC amm
+
+def root(number: Int): Int = Math.sqrt(number.toDouble).toInt
+// -- sanity check
+root(-1)
+
+def head[A](list: List[A]): A = list.head
+// -- sanity check
+head(Nil)
+
+#+END_SRC
+#+REVEAL: split
+#+BEGIN_SRC amm
+
+def find[K, V](dictionary: Map[K, V], key: K): V = dictionary(key)
+// -- sanity check
+find(Map.empty[Int, String], 1)
+find(Map(1 -> "Uno"), 2)
+
+#+END_SRC
+#+REVEAL: split
+#+BEGIN_SRC amm
+
+def safeSquare(i: Int): Int = {
+  if ( > 46340) throw new IllegalArgumentException("Input too high")
+  if (i < -46340) throw new IllegalArgumentException("Input too low")
+  i * i
+}
+// -- sanity check
+safeSquare(46500)
+
+#+END_SRC
