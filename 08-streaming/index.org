@@ -1,0 +1,85 @@
+#+TITLE: Streaming All The Things
+#+AUTHOR: SWCoE
+#+INCLUDE: "../common.org"
+#+EXPORT_FILE_NAME: ../dist/streaming
+
+* Introduction
+   Programming with streams is also called functional reactive programming
+   (FRP). It is one (of many) ways of handling state in a way that is compatible
+   with referential transparency; which is basically the isolation of side
+   effects, or making sure changes to program state happen in a way that is not
+   noticed by different sections of the code.
+
+#+REVEAL: split
+
+   Streams make forefront the concerns of functional (immutability) and reactive
+   (inversion of control) aspects of programming.
+
+   When working with Streams, one is able to describe time itself in the code
+   you write. There are two ways to model time in FRP, either discretely (in
+   steps) or continuously.
+
+   In a discrete view $(t_1, v_1) \rightarrow (t_2, v_2) \dashrightarrow (t_n,
+   v_n)$ you can think of a stream as a endless list of values that happen at
+   arbitrary moments in time: $v_1, v_2, \ldots v_n$.
+
+* Explanation
+
+   The key insight is that you can map changes of a property though time as a
+   list of these values as a way to regain composability around event /streams/.
+
+   There are then two distinct concepts that arise (we will use the BaconJS
+   terminology from now on) ~Properties~ and ~EventStreams~.
+
+#+REVEAL: split
+
+   In a ~property~, you can always ask: =What is property's value now?= or a
+   ~property~ is expected to hold a value at any given moment in time.
+
+   An ~eventStreams~ on the other hand does not hold on to values across time,
+   they are ephemeral and only send out signals (or events) as they are
+   triggered.
+
+#+REVEAL: split
+
+   Key combinators arise:
+
+   (we can visualize them at https://rxmarbles.com/)
+
+#+ATTR_REVEAL: :frag (fade-in)
+   * ~filter~ : Only consider (emit) values if they match the filter predicate
+   * ~map~ : Transform all values applying a given function to each value
+     individually.
+   * ~take~ : Close a stream after taking the first *n* elements from it.
+   * ~concat~ : Concatenate a second stream right at the end of a first one.
+#+REVEAL: split
+#+ATTR_REVEAL: :frag (fade-in)
+   * ~skipUntil~ : Ignore (do not emit) values until they match a given
+     predicate; then continue unconditionally.
+   * ~debounce~ : Only emit the last value from a noisy bunch.
+#+REVEAL: split
+#+ATTR_REVEAL: :frag (fade-in)
+   * ~concatMap~ : flatten / unroll internal streams via the ~concat~ function.
+   * ~mergeMap~ : flatten / unroll internal streams via the ~merge~ function.
+   * ~switchMap~ : flatten / unroll internal streams by canceling on every new
+     value emission to the parent.
+
+* Examples
+   Starting point: https://jsfiddle.net/kryptt/y5fta1nc/
+#+ATTR_REVEAL: :frag (fade-in)
+   1. Switch and light.
+   2. Ensure the bulb shuts down after 2 seconds of inactivity.
+   3. Turn the light on when the mouse enters the box and off when it leaves it.
+
+* Exercises
+   Pick one or more of:
+   1. Write a login/logout module that holds the current user as a ~Property~.
+      Store logins and passwords for validation in memory.
+   2. Write a drawing application over a HTML5 Canvas. Store the current color
+      and brush width in a property.
+   3. Write a stock market tracker.
+
+   You can look at http://dangorst.github.io/frp-with-bacon/ for inspiration.
+
+   Also, a solution to the previous example is available here:
+   https://jsfiddle.net/kryptt/y5fta1nc/66
