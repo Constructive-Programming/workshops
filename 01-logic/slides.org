@@ -1,0 +1,24 @@
+#+TITLE: Logic in your Programs
+#+SUBTITLE: Use the compiler to prove your business logic.
+#+REVEAL_TITLE_SLIDE: <h1>%t</h1><h2>%s</h2>
+#+AUTHOR: Rodolfo Hansen
+#+INCLUDE: "../common.org"
+#+EXPORT_FILE_NAME: ../dist/logic-slides
+
+* "Correct Software"
+
+  What does it mean for software to be "correct"?
+
+  There are three main criteria:
+  + Independently verifiable evidence.
+  + Continue to function for *all* possible input.
+  + Do nothing else.
+
+** Whitebox programming
+
+  + Dijkstra (1970)) "Notes On Structured Programming" :: "A convincing demonstration of correctness being impossible as long as the mechanism is regarded as a black box, our only hope is in not regarding the mechanism as a black box"
+
+  Use types to shed light into your assertions and invariants. Doing so makes your compiler a proof assistant.
+     
+** Word on the Street
+
